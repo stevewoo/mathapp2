@@ -72,7 +72,7 @@ if (Posts.find().count() === 0) {
 }
 
 
-//if ( Meteor.users.find().count() === 0 ) {
+if (!Meteor.users.findOne({username:"steve"})){
     Accounts.createUser({
         username: 'steve',
         email: 'myEmail@sdf.xv',
@@ -83,4 +83,4 @@ if (Posts.find().count() === 0) {
             company: 'myCompany',
         }
     });
-//}
+}
