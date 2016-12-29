@@ -19,7 +19,8 @@ if (Posts.find().count() === 0) {
     url: 'http://sachagreif.com/introducing-telescope/',
     submitted: new Date(now - 7 * 3600 * 1000),
     commentsCount: 2,
-    upvoters: [], votes: 0
+    upvoters: [], votes: 0,
+    //status: "Done"
   });
   
   Comments.insert({
@@ -66,7 +67,8 @@ if (Posts.find().count() === 0) {
       url: 'http://google.com/?q=test-' + i,
       submitted: new Date(now - i * 3600 * 1000 + 1),
       commentsCount: 0,
-      upvoters: [], votes: 0
+      upvoters: [], votes: 0,
+      status: postStatus.To_do
     });
   }
 }

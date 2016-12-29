@@ -1,3 +1,5 @@
+
+
 Template.postItem.helpers({
   ownPost: function() {
     return this.userId == Meteor.userId();
@@ -14,6 +16,9 @@ Template.postItem.helpers({
     } else {
       return 'disabled';
     }
+  },
+  status: function(){
+    return this.status;
   }
 });
 
