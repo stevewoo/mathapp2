@@ -1,3 +1,9 @@
+// to do:
+// - read from Google sheet and update database without breaking links
+// - 
+
+
+
 // Fixture data 
 if (Posts.find().count() === 0) {
   var now = new Date().getTime();
@@ -16,7 +22,7 @@ if (Posts.find().count() === 0) {
     title: 'Writing decimal number words as a decimal number',
     userId: sacha._id,
     author: sacha.profile.name,
-    url: 'http://sachagreif.com/introducing-telescope/',
+    //url: 'http://sachagreif.com/introducing-telescope/',
     submitted: new Date(now - 7 * 3600 * 1000),
     commentsCount: 2,
     upvoters: [], votes: 0,
@@ -26,12 +32,22 @@ if (Posts.find().count() === 0) {
     Assessment Activity Sheets 1 & 2`
   });
   
-  // Exercises.insert({
-  //   postID: awsQ1,
-  //   body: `Worksheet 1: Reading and writing whole numbers 
-  //   Worksheet 3: Reading and writing decimal numbers 
-  //   Assessment Activity Sheets 1 & 2`
-  // });
+  var objectiveTemplate = Posts.insert({
+    title: "Objective short description",
+    userId: sacha._id,
+    author: sacha.profile.name,
+    added: new Date(now),
+    commentsCount: 0,
+    status: postStatus.To_do,
+    quetionNumber: "1",
+    level: "3",
+     achievmentObjective: "N2",
+     exercises: "worksheets and books",
+      onlineResources: "websites",
+      image: "if available",
+      example: "if available",
+      video: "youtube to embed"
+  });
 
 
   Comments.insert({
@@ -82,7 +98,7 @@ if (Posts.find().count() === 0) {
       status: postStatus.To_do,
       exercises: `Worksheet 1: Reading and writing whole numbers 
     Worksheet 3: Reading and writing decimal numbers 
-    Assessment Activity Sheets 1 & 2`
+    Assessment Activity Sheets 1 & 2 number:` +i
     });
   }
 }

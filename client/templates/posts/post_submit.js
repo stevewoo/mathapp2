@@ -16,13 +16,13 @@ Template.postSubmit.events({
     e.preventDefault();
     
     var post = {
-      url: $(e.target).find('[name=url]').val(),
+      //url: $(e.target).find('[name=url]').val(),
       title: $(e.target).find('[name=title]').val(),
-      status: postStatus.To_do // added
+      //status: postStatus.To_do // added
     };
     
     var errors = validatePost(post);
-    if (errors.title || errors.url)
+    if (errors.title)
       return Session.set('postSubmitErrors', errors);
     
     Meteor.call('postInsert', post, function(error, result) {
