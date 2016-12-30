@@ -12,19 +12,30 @@ if (Posts.find().count() === 0) {
   });
   var sacha = Meteor.users.findOne(sachaId);
   
-  var telescopeId = Posts.insert({
-    title: 'Introducing Telescope',
+  var awsQ1 = Posts.insert({
+    title: 'Writing decimal number words as a decimal number',
     userId: sacha._id,
     author: sacha.profile.name,
     url: 'http://sachagreif.com/introducing-telescope/',
     submitted: new Date(now - 7 * 3600 * 1000),
     commentsCount: 2,
     upvoters: [], votes: 0,
-    status: postStatus.Complete
+    status: postStatus.Complete,
+    exercises: `Worksheet 1: Reading and writing whole numbers 
+    Worksheet 3: Reading and writing decimal numbers 
+    Assessment Activity Sheets 1 & 2`
   });
   
+  // Exercises.insert({
+  //   postID: awsQ1,
+  //   body: `Worksheet 1: Reading and writing whole numbers 
+  //   Worksheet 3: Reading and writing decimal numbers 
+  //   Assessment Activity Sheets 1 & 2`
+  // });
+
+
   Comments.insert({
-    postId: telescopeId,
+    postId: awsQ1,
     userId: tom._id,
     author: tom.profile.name,
     submitted: new Date(now - 5 * 3600 * 1000),
@@ -32,7 +43,7 @@ if (Posts.find().count() === 0) {
   });
   
   Comments.insert({
-    postId: telescopeId,
+    postId: awsQ1,
     userId: sacha._id,
     author: sacha.profile.name,
     submitted: new Date(now - 3 * 3600 * 1000),
@@ -68,21 +79,24 @@ if (Posts.find().count() === 0) {
       submitted: new Date(now - i * 3600 * 1000 + 1),
       commentsCount: 0,
       upvoters: [], votes: 0,
-      status: postStatus.To_do
+      status: postStatus.To_do,
+      exercises: `Worksheet 1: Reading and writing whole numbers 
+    Worksheet 3: Reading and writing decimal numbers 
+    Assessment Activity Sheets 1 & 2`
     });
   }
 }
 
 
-if (!Meteor.users.findOne({username:"steve"})){
+if (!Meteor.users.findOne({username:"student"})){
     Accounts.createUser({
-        username: 'steve',
+        username: 'student',
         email: 'myEmail@sdf.xv',
         password: 'password',
         profile: {
-            first_name: 'Steve',
-            last_name: 'W',
-            company: 'myCompany',
+            first_name: 'Stu',
+            last_name: 'Dent',
+            
         }
     });
 }

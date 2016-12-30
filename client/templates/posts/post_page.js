@@ -3,3 +3,4 @@ Template.postPage.helpers({
     return Comments.find({postId: this._id});
   }
 });
+

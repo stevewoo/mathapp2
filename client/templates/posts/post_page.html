@@ -1,7 +1,18 @@
 <template name="postPage">
   <div class="post-page page">
-    {{> postItem}}
-  
+
+<!-- Show post name -->
+
+{{> postItem}}
+
+<!-- Show post details -->
+
+<p class="postDetails">
+        Details: {{> postDetails}}
+</p>
+
+<!--  Show comments -->
+
     <ul class="comments">
       {{#each comments}}
         {{> commentItem}}
@@ -15,3 +26,5 @@
     {{/if}}
   </div>
 </template>
+
+
