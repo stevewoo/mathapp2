@@ -20,7 +20,7 @@ if (Posts.find().count() === 0) {
     submitted: new Date(now - 7 * 3600 * 1000),
     commentsCount: 2,
     upvoters: [], votes: 0,
-    //status: "Done"
+    status: postStatus.Complete
   });
   
   Comments.insert({
