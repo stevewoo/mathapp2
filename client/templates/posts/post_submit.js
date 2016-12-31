@@ -18,7 +18,7 @@ Template.postSubmit.events({
     var post = {
       //url: $(e.target).find('[name=url]').val(),
       title: $(e.target).find('[name=title]').val(),
-      //status: postStatus.To_do // added
+      //status: $postStatus.To_do // added - can't get working
     };
     
     var errors = validatePost(post);

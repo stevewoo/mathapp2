@@ -1,6 +1,10 @@
 // to do:
 // - read from Google sheet and update database without breaking links
-// - 
+// - open spreadsheet
+// - read in data
+// - check post doesn't already exist, if so update it
+// - if not add it
+
 
 
 
@@ -9,10 +13,11 @@ if (Posts.find().count() === 0) {
   var now = new Date().getTime();
   
   // create two users
-  var tomId = Meteor.users.insert({
-    profile: { name: 'Tom Coleman' }
+  var teacherId = Meteor.users.insert({
+    profile: { name: 'Teacher' }
   });
-  var tom = Meteor.users.findOne(tomId);
+  var teacher = Meteor.users.findOne(teacherId);
+ 
   var sachaId = Meteor.users.insert({
     profile: { name: 'Sacha Greif' }
   });
@@ -52,8 +57,8 @@ if (Posts.find().count() === 0) {
 
   Comments.insert({
     postId: awsQ1,
-    userId: tom._id,
-    author: tom.profile.name,
+    userId: teacher._id,
+    author: teacher.profile.name,
     submitted: new Date(now - 5 * 3600 * 1000),
     body: 'Interesting project Sacha, can I get involved?'
   });
@@ -68,8 +73,8 @@ if (Posts.find().count() === 0) {
   
   Posts.insert({
     title: 'Meteor',
-    userId: tom._id,
-    author: tom.profile.name,
+    userId: teacher._id,
+    author: teacher.profile.name,
     url: 'http://meteor.com',
     submitted: new Date(now - 10 * 3600 * 1000),
     commentsCount: 0,
@@ -78,8 +83,8 @@ if (Posts.find().count() === 0) {
   
   Posts.insert({
     title: 'The Meteor Book',
-    userId: tom._id,
-    author: tom.profile.name,
+    userId: teacher._id,
+    author: teacher.profile.name,
     url: 'http://themeteorbook.com',
     submitted: new Date(now - 12 * 3600 * 1000),
     commentsCount: 0,
@@ -112,6 +117,19 @@ if (!Meteor.users.findOne({username:"student"})){
         profile: {
             first_name: 'Stu',
             last_name: 'Dent',
+            
+        }
+    });
+}
+
+if (!Meteor.users.findOne({username:"teacher"})){
+    Accounts.createUser({
+        username: 'teacher',
+        email: 'teacher@sdfd.sdf',
+        password: 'password',
+        profile: {
+            first_name: 'Tea',
+            last_name: 'Cher',
             
         }
     });
