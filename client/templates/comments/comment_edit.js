@@ -1,32 +1,32 @@
-Template.postEdit.onCreated(function() {
-  Session.set('postEditErrors', {});
+Template.commentEdit.onCreated(function() {
+  Session.set('commentEditErrors', {});
 });
 
-Template.postEdit.helpers({
+Template.commentEdit.helpers({
   errorMessage: function(field) {
-    return Session.get('postEditErrors')[field];
+    return Session.get('commentEditErrors')[field];
   },
   errorClass: function (field) {
-    return !!Session.get('postEditErrors')[field] ? 'has-error' : '';
+    return !!Session.get('commentEditErrors')[field] ? 'has-error' : '';
   }
 });
 
-Template.postEdit.events({
+Template.commentEdit.events({
   'submit form': function(e) {
     e.preventDefault();
     
     var currentPostId = this._id;
     
-    var postProperties = {
+    var commentProperties = {
       // url: $(e.target).find('[name=url]').val(),
-      title: $(e.target).find('[name=title]').val()
+      body: $(e.target).find('[name=body]').val()
     }
     
     var errors = validatePost(postProperties);
-    if (errors.title)
-      return Session.set('postEditErrors', errors);
+    if (errors.body)
+      return Session.set('commentEditErrors', errors);
     
-    Posts.update(currentPostId, {$set: postProperties}, function(error) {
+    Comments.update(currentPostId, {$set: postProperties}, function(error) {
       if (error) {
         // display the error to the user
         throwError(error.reason);
@@ -39,9 +39,9 @@ Template.postEdit.events({
   'click .delete': function(e) {
     e.preventDefault();
     
-    if (confirm("Delete this post?")) {
+    if (confirm("Delete this comment?")) {
       var currentPostId = this._id;
-      Posts.remove(currentPostId);
+      Comments.remove(currentPostId);
       Router.go('home');
     }
   }

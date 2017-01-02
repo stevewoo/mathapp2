@@ -8,6 +8,27 @@
         </div>
     </div>
     <button type="submit" class="btn btn-primary">Add Comment</button>
-    <button type="submit" class="btn btn-primary">Add Image</button>
+    {{> imageSubmit}}
+
+
+    <!--<button type="click" class="btn btn-primary">Add Image</button>-->
   </form>
+  
 </template>
+
+<template name="imageSubmit">
+    <button type="click" class="btn btn-primary">Add Image</button>
+    {{#if photo}}
+    <div>
+      <img width="20%" src={{photo}}  style="padding:20px;" />
+    </div>
+    {{/if}}
+  </template>
+
+
+<template name="imageUpload">
+<form>
+  <input type="file" id="upload-image" class="file_bag" accept="image/*">
+  <button type="submit">Click to upload</button>
+  </form>
+  </template>

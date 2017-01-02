@@ -4,6 +4,12 @@
       <span class="author">{{author}}</span>
       <span class="date">on {{submittedText}}</span>
     </h4>
+
+    <!-- if a picture exists, display it -->
+    {{#if image}}
+    	<img src={{image}}  style="padding:20px;"/>  
+    {{/if}}
     <p>{{body}}</p>
   </li>
 </template>
+

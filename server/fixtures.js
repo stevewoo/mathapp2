@@ -91,21 +91,21 @@ if (Posts.find().count() === 0) {
     upvoters: [], votes: 0
   });
   
-  for (var i = 0; i < 10; i++) {
-    Posts.insert({
-      title: 'Learning Objective #' + i,
-      author: sacha.profile.name,
-      userId: sacha._id,
-      url: 'http://google.com/?q=test-' + i,
-      submitted: new Date(now - i * 3600 * 1000 + 1),
-      commentsCount: 0,
-      upvoters: [], votes: 0,
-      status: postStatus.To_do,
-      exercises: `Worksheet 1: Reading and writing whole numbers 
-    Worksheet 3: Reading and writing decimal numbers 
-    Assessment Activity Sheets 1 & 2 number:` +i
-    });
-  }
+  // for (var i = 0; i < 10; i++) {
+  //   Posts.insert({
+  //     title: 'Learning Objective #' + i,
+  //     author: sacha.profile.name,
+  //     userId: sacha._id,
+  //     url: 'http://google.com/?q=test-' + i,
+  //     submitted: new Date(now - i * 3600 * 1000 + 1),
+  //     commentsCount: 0,
+  //     upvoters: [], votes: 0,
+  //     status: postStatus.To_do,
+  //     exercises: `Worksheet 1: Reading and writing whole numbers 
+  //   Worksheet 3: Reading and writing decimal numbers 
+  //   Assessment Activity Sheets 1 & 2 number:` +i
+  //   });
+  // }
 }
 
 

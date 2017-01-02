@@ -26,7 +26,9 @@ ian:accounts-ui-bootstrap-3
 check@1.2.4
 audit-argument-checks@1.0.7
 session@1.1.7
-lepozepo:cloudinary
+lepozepo:cloudinary@=4.2.2
 mdg:camera
 johnar:tabletop
 shell-server
+ostrio:files
+ostrio:base64
