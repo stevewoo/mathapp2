@@ -7,6 +7,9 @@ Template.commentItem.helpers({
   },
   image: function() {
     return this.image;
+  },
+  ownPost: function() {
+    return this.userId == Meteor.userId();
   }
 });
 

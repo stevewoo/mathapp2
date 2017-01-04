@@ -17,9 +17,10 @@ Template.postItem.helpers({
       return 'disabled';
     }
   },
-  status: function(){
+  loStatus: function(){
     return this.status;
   }
+
 });
 
 Template.postItem.events({

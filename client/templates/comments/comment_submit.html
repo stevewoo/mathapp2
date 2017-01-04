@@ -7,8 +7,17 @@
             <span class="help-block">{{errorMessage 'body'}}</span>
         </div>
     </div>
+
+    {{#if photo}}
+    <div>
+      <img width="20%" src={{photo}}  style="padding:20px;" />
+    </div>
+    {{/if}}
     <button type="submit" class="btn btn-primary">Add Comment</button>
-    {{> imageSubmit}}
+    <!-- <button type="button" class="btn btn-primary">Upload Image</button> -->
+    <!-- {{> imageSubmit}} -->
+    <button type="click" class="addImage btn-link">Add Image</button>
+    
 
 
     <!--<button type="click" class="btn btn-primary">Add Image</button>-->
@@ -17,18 +26,5 @@
 </template>
 
 <template name="imageSubmit">
-    <button type="click" class="btn btn-primary">Add Image</button>
-    {{#if photo}}
-    <div>
-      <img width="20%" src={{photo}}  style="padding:20px;" />
-    </div>
-    {{/if}}
-  </template>
-
-
-<template name="imageUpload">
-<form>
-  <input type="file" id="upload-image" class="file_bag" accept="image/*">
-  <button type="submit">Click to upload</button>
-  </form>
-  </template>
+    <!-- can't delete - for some reason this is really important -->
+</template>

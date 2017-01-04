@@ -11,24 +11,24 @@ Template.commentSubmit.helpers({
   }
 });
 
-Template.imageUpload.events({
-  'change #upload-image': function(event, template) {
-    event.preventDefault();
+// Template.imageUpload.events({
+//   'change #upload-image': function(event, template) {
+//     event.preventDefault();
 
-    let files = $('input.file_bag')[0].files;
+//     let files = $('input.file_bag')[0].files;
 
-    let options = {
-        folder: "Meteor.userId()",
-        image_metadata: true
-    };
+//     let options = {
+//         folder: "Meteor.userId()",
+//         image_metadata: true
+//     };
 
-    Cloudinary.upload(files, options, function(error, result) {
-        console.log(result.public_id);
-    });
-}
+//     Cloudinary.upload(files, options, function(error, result) {
+//         console.log(result.public_id);
+//     });
+// }
 
 
-});
+// });
 
 function dataURLtoBlob(dataurl) {
     var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
@@ -51,34 +51,11 @@ Template.commentSubmit.events({
 
     var image = Session.get('photo');
 
-    if(image){ // check if post also includes image
-      var files = [];
-      files.push(dataURLtoBlob(image));
-
-      let options = {
-        folder: "mathApp",
-        image_metadata: true
-      };
-
+    if(image){
       var imageURL = "http://res.cloudinary.com/stevew275/image/upload/v1483320421/upload_cloud_w5uow4.gif"; // loading gif
-
-      Cloudinary.upload(files, options, function(err, res) {
-
-          if (err){
-            console.log("Error: " + err);
-            return;
-          }
-          //console.log(res);
-          imageURL = res.secure_url;
-          //console.log(imageURL);
-
-      });
-      //console.log(comment);
-
       comment = _.extend(comment, {
-        image: imageURL
+      image: imageURL
       });
-      //console.log(comment);
     }
 
     var errors = {};
@@ -92,22 +69,59 @@ Template.commentSubmit.events({
         throwError(error.reason);
       } else {
         $body.val('');
+        if(image){ // check if post also includes image
+          uploadToCloudinary(commentId, image);
+        }
       }
+      
     });
+
+    Session.set("photo", null); // get rid of the image just captured
   }
+  // 'submit form': function(e, template) {
+  //   e.preventDefault();
+  //   console.log("hi");
+
+  // }
 });
 
 
+function uploadToCloudinary(commentId, image){
+
+  var files = [];
+  files.push(dataURLtoBlob(image));
+
+      let options = {
+        folder: "mathApp",
+        image_metadata: true
+      };
+
+      //var commentProperties = { image: imageURL };
+
+      
+      Cloudinary.upload(files, options, function(err, res) {
+          if (err){
+            console.log("Error: " + err);
+            return;
+          }
+          //console.log(res);
+          imageURL = res.secure_url;
+          Comments.update(commentId, {$set: {image: imageURL}})
+          //console.log(imageURL);
+      });
+}
 
 
-  Template.imageSubmit.helpers({
-    photo: function () {
-      return Session.get("photo");
-    }
-  });
 
-  Template.imageSubmit.events({
-    'click button': function () {
+
+Template.commentSubmit.helpers({
+  photo: function () {
+    return Session.get("photo");
+  }
+});
+
+Template.commentSubmit.events({
+    'click .addImage': function () {
       var cameraOptions = {
         width: 640,
         height: 480

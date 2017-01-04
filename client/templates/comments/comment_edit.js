@@ -15,18 +15,19 @@ Template.commentEdit.events({
   'submit form': function(e) {
     e.preventDefault();
     
-    var currentPostId = this._id;
+    var currentPostId = this.postId;
+    var currentCommentId = this._id;
     
     var commentProperties = {
       // url: $(e.target).find('[name=url]').val(),
       body: $(e.target).find('[name=body]').val()
     }
     
-    var errors = validatePost(postProperties);
-    if (errors.body)
-      return Session.set('commentEditErrors', errors);
+    // var errors = validatePost(postProperties);
+    // if (errors.body)
+    //   return Session.set('commentEditErrors', errors);
     
-    Comments.update(currentPostId, {$set: postProperties}, function(error) {
+    Comments.update(currentCommentId, {$set: commentProperties}, function(error) {
       if (error) {
         // display the error to the user
         throwError(error.reason);
@@ -40,9 +41,10 @@ Template.commentEdit.events({
     e.preventDefault();
     
     if (confirm("Delete this comment?")) {
-      var currentPostId = this._id;
-      Comments.remove(currentPostId);
-      Router.go('home');
+      var currentCommentId = this._id;
+      var currentPostId = this.postId;
+      Comments.remove(currentCommentId);
+      Router.go('postPage', {_id: currentPostId});
     }
   }
 });

@@ -14,16 +14,15 @@
 <!--  Show comments -->
 
     <ul class="comments">
-      {{#each comments}}
+      {{#each comments }}
         {{> commentItem}}
       {{/each}}
-
     </ul>
   
     {{#if currentUser}}
       {{> commentSubmit}}
 
-      {{> imageUpload}}
+     <!--  {{> imageUpload}} -->
     {{else}}
       <p>Please log in to leave a comment or upload evidence.</p>
     {{/if}}

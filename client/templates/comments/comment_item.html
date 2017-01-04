@@ -3,13 +3,17 @@
     <h4>
       <span class="author">{{author}}</span>
       <span class="date">on {{submittedText}}</span>
+      {{#if ownPost}}<a href="{{pathFor 'commentEdit'}}">Edit</a>{{/if}}
     </h4>
+    <hr>
+
+    <p>{{body}}</p>
 
     <!-- if a picture exists, display it -->
     {{#if image}}
     	<img src={{image}}  style="padding:20px;"/>  
     {{/if}}
-    <p>{{body}}</p>
+
   </li>
 </template>
 
