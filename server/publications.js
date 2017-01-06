@@ -19,7 +19,7 @@ Meteor.publish('singleComment', function(id) {
 
 Meteor.publish('comments', function(postId) {
   check(postId, String);
-  return Comments.find({postId: postId});
+  return Posts.find({postId: postId});
 });
 
 Meteor.publish('notifications', function() {
